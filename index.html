@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> lampada!!</title>
+        <link rel="stylesheet" href="style.css">
+
+</head>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-database.js"></script>
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyBlUPVqhcu8eQSTYas1FabxiuV4SbjMZJE",
+    authDomain: "controlo-de-iluminaao.firebaseapp.com",
+    projectId: "controlo-de-iluminaao",
+    storageBucket: "controlo-de-iluminaao.appspot.com",
+    messagingSenderId: "599783025402",
+    appId: "1:599783025402:web:faf90a0a41d2c55a947743"
+  };
+  firebase.initializeApp(firebaseConfig);
+
+firebase.database().ref("SALA/estado").on("value", snapshot => {
+document.querySelector("#estado-led").textContent = snapshot.val();
+});
+
+
+  function ledOn() {
+    firebase.database().ref("SALA").set({
+      estado: "LIGADA"
+    });
+  }
+
+  function ledOff() {
+    firebase.database().ref("SALA").set({
+      estado: "DESLIGADA"
+    });
+  }
+</script>
+<script src="app.js" defer></script>
+<body>
+<h1 style="margin-left: 100px;">TME Education Mozambique</h1>
+
+<img src="c:\Users\Jacqueline\Downloads\gettyimages-460717701-612x612.jpg" width="350px" alt="lampada" style="margin-left: 130px;" >
+<br>
+
+<button class="lig" onclick="ledOn()" type="submit" name="b1" value="1">Ligar</button>
+<button class="deslig" onclick="ledOff()"submit" name="b2" value="0">Desligar</button>
+
+
+<h2 style="margin-left: 150px;">Jacqueline Layza Tamela Tomas</h2>
+</body>
+</html>
+
